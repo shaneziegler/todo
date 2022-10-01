@@ -138,7 +138,7 @@ class TodoList {
   }
 
   findByTitle(title) {
-    return this.filter(todo => todo.title === title).first();
+    return this.filter(todo => todo.getTitle() === title).first();
   }
 
   allDone() {
@@ -148,32 +148,23 @@ class TodoList {
   allNotDone() {
     return this.filter(todo => !todo.isDone());
   }
+
+  markDone(title) {
+    let todo = this.findByTitle(title);
+    if (todo) {
+      todo.markDone();
+    }
+  }
+
+  markAllDone() {
+    this.forEach(todo => todo.markDone());
+  }
+
+  markAllUndone() {
+    this.forEach(todo => todo.markUndone());
+  }
+
+  toArray() {
+    return [...this.todos];
+  }
 }
-
-
-
-let todo1 = new Todo("Buy milk");
-let todo2 = new Todo("Clean room");
-let todo3 = new Todo("Go to the gym");
-let todo4 = new Todo("Go shopping");
-let todo5 = new Todo("Feed the cats");
-let todo6 = new Todo("Study for Launch School");
-let list = new TodoList("Today's Todos");
-
-list.add(todo1);
-list.add(todo2);
-list.add(todo3);
-list.add(todo4);
-list.add(todo5);
-list.add(todo6);
-todo1.markDone();
-todo5.markDone();
-
-// let doneTodos = list.filter(todo => todo.isDone());
-// console.log(doneTodos);
-
-// console.log(list.filter(todo => todo.isDone()).first());
-
-// console.log(list.findByTitle('Buy milk'));
-console.log(list.allDone());
-console.log(list.allNotDone());
