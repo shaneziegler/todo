@@ -144,7 +144,12 @@ class TodoList {
   allDone() {
     return this.filter(todo => todo.isDone());
   }
+
+  allNotDone() {
+    return this.filter(todo => !todo.isDone());
+  }
 }
+
 
 
 let todo1 = new Todo("Buy milk");
@@ -171,3 +176,4 @@ todo5.markDone();
 
 // console.log(list.findByTitle('Buy milk'));
 console.log(list.allDone());
+console.log(list.allNotDone());
